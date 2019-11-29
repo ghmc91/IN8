@@ -1,5 +1,6 @@
 # -*- coding: utf-8 -*-
 import scrapy
+import json
 
 
 
@@ -11,10 +12,19 @@ class G1Spider(scrapy.Spider):
     def parse(self, response):
         noticias = response.xpath('//a[@class="feed-post-link gui-color-primary gui-color-hover"]/text()').extract()
 
-        x = yield {
-            'noticia1': noticias[0],
-            'noticia2': noticias[1],
-            'noticia3': noticias[2]
+        noticias_dict = {
+            'Página\n':{
+            'url': response.url},
+            'Notícia 1\n' : {
+            'Título': noticias[0]},
+            'Notícia 2\n' : {
+            'Título': noticias[1]},
+            'Notícia 3\n' : {
+            'Título': noticias[2]}
             }
+        
+        with open('noticias.json', 'w', encoding='utf-8') as json_file:
+            json.dump(noticias_dict, json_file, ensure_ascii=False)
 
-        return x
+
+        
