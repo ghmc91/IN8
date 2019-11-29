@@ -13,13 +13,13 @@ class G1Spider(scrapy.Spider):
         noticias = response.xpath('//a[@class="feed-post-link gui-color-primary gui-color-hover"]/text()').extract()
 
         noticias_dict = {
-            'Página\n':{
+            'Página':{
             'url': response.url},
-            'Notícia 1\n' : {
+            'Notícia 1' : {
             'Título': noticias[0]},
-            'Notícia 2\n' : {
+            'Notícia 2' : {
             'Título': noticias[1]},
-            'Notícia 3\n' : {
+            'Notícia 3' : {
             'Título': noticias[2]}
             }
         
